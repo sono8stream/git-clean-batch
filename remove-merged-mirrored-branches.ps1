@@ -1,0 +1,1 @@
+git branch --merged master | grep -v -e master| sed -e 's/ //g' | %{git branch --delete $_}

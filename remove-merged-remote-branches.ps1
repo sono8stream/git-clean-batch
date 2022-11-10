@@ -1,0 +1,1 @@
+git branch -r --merged master | grep -v -e master| sed -e 's% *origin/%%' | %{git push --delete origin $_}
