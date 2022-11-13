@@ -1,7 +1,7 @@
 # 管理者で実行
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole("Administrators")) { Start-Process powershell.exe "-File `"$PSCommandPath`"" -Verb RunAs; exit }
 
-$ports=@(22,3000,443);
+$ports=@(22,80,443);
 
 # まずこれまでの設定を削除
 for( $i = 0; $i -lt $ports.length; $i++ ){
