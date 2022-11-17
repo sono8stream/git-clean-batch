@@ -5,7 +5,7 @@ Date: November 13, 2022
 - Gitlab 立ち上げ、push サイズ制限を確認する
   - 立ち上げ
     - docker を wsl にインストール
-    - docker pull で gitlab-ee を取得
+    - docker pull で gitlab-ee を取得 or https://drive.google.com/file/d/11qI6L2u1Ckpyuu9w7ps11RBjQNVWyw8J/view?usp=sharing
     - [https://docs.gitlab.com/ee/install/docker.html](https://docs.gitlab.com/ee/install/docker.html)　の docker-engine のセットアップを参考に gitlab 環境を立ち上げ
     - localhost で gitlab にアクセスできることを確認
     - ユーザ追加
