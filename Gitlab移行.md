@@ -3,6 +3,7 @@
 Date: November 13, 2022
 
 - Gitlab 立ち上げ、push サイズ制限を確認する
+
   - 立ち上げ
     - docker を wsl にインストール
     - docker pull で gitlab-ee を取得 or https://drive.google.com/file/d/11qI6L2u1Ckpyuu9w7ps11RBjQNVWyw8J/view?usp=sharing
@@ -70,3 +71,26 @@ Date: November 13, 2022
       - DVCS でも URL が必要っぽい。まあそれはそう
       - とりあえず Jira 側にリンクを足すことはできたので、これで最低限は大丈夫そう。ただし DNS 解決できていないので、リンクから飛ぶことは不可能
     - 外部連携を制限するには Maintainer 以下にすればよかろう
+
+- docker desktop からの移行
+  - 基本これに従う
+    - [https://blog.jp.square-enix.com/iteng-blog/posts/00024-wsl2-docker-ce/](https://blog.jp.square-enix.com/iteng-blog/posts/00024-wsl2-docker-ce/)
+  - まずはコンテナを commit
+    - docker commit gitlab/gitlab-ee gitlab-ee2
+  - image を書き出し
+    - docker save gitlab-ee2 > gitlab-ee.tar
+  - Docker Desktop を停止させる
+  - Docker Engine をインストール
+    - [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
+  - docker daemon が設定しても呼び出せない場合は以下を実行
+    - sudo service docker start
+  - 起動時に自動実行されるよう/etc/wsl.conf に以下を記述
+    - [boot]
+      command = service docker start;
+  - image をロード
+    - docker load < gitlab-ee.tar
+  - コンテナを起動
+    - これまで同様 docker run
+  - Docker Desktop をアンインストール
+- ポートはこれまで通り制御できる
+  - Microsoft Windows サブシステムサービスホストをネットワーク内で許可させればいいい
